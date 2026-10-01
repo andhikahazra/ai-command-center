@@ -1,38 +1,46 @@
 import React from 'react';
 
+/**
+ * Optimized Three.js Studio Lighting:
+ * - Ambient daylight illumination
+ * - 1 Directional sun with lightweight 1024x1024 shadow map
+ * - Hemisphere bounce for natural sky/ground gradient
+ * - Zero heavy point light calculations, maximizing 60 FPS performance
+ */
 export const Lighting: React.FC = () => {
   return (
     <>
-      {/* Bright daylight-like ambient */}
-      <ambientLight intensity={1.2} color="#f0f0ff" />
+      {/* Bright ambient workplace lighting */}
+      <ambientLight intensity={1.4} color="#f8fafc" />
 
-      {/* Main sunlight from top-right */}
+      {/* Main sunlight */}
       <directionalLight
-        position={[12, 25, 10]}
-        intensity={2.5}
+        position={[14, 22, 12]}
+        intensity={2.2}
         color="#fffbe6"
         castShadow
-        shadow-mapSize={[2048, 2048]}
-        shadow-bias={-0.001}
+        shadow-mapSize={[1024, 1024]}
+        shadow-bias={-0.0008}
+        shadow-camera-left={-20}
+        shadow-camera-right={20}
+        shadow-camera-top={20}
+        shadow-camera-bottom={-20}
+        shadow-camera-near={1}
+        shadow-camera-far={50}
       />
 
-      {/* Fill light from opposite side */}
+      {/* Soft directional fill from opposite side (no shadow overhead) */}
       <directionalLight
-        position={[-10, 15, -8]}
-        intensity={0.8}
-        color="#dbeafe"
+        position={[-12, 16, -10]}
+        intensity={0.9}
+        color="#e0f2fe"
       />
 
-      {/* Soft accent lights */}
-      <pointLight position={[0, 6, 0]} color="#e0e7ff" intensity={0.6} distance={25} />
-      <pointLight position={[-8, 4, 8]} color="#cffafe" intensity={0.4} distance={18} />
-      <pointLight position={[8, 4, -8]} color="#fef3c7" intensity={0.4} distance={18} />
-
-      {/* Hemisphere sky/ground bounce */}
+      {/* Natural hemisphere sky/ground gradient bounce */}
       <hemisphereLight
-        color="#bfdbfe"
-        groundColor="#fef9c3"
-        intensity={0.6}
+        color="#dbeafe"
+        groundColor="#fef3c7"
+        intensity={0.7}
       />
     </>
   );
