@@ -1,7 +1,7 @@
-import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useAgentStore } from '../../store/agentStore';
 import { useUIStore } from '../../store/uiStore';
-import { ZoomIn, ZoomOut, RotateCcw, Footprints, Award, CheckCircle2 } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCcw, Footprints, Award } from 'lucide-react';
 
 /**
  * 2D Flat Architectural Floorplan View (Top-Down 90° Blueprint):
